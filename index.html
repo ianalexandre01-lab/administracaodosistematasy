@@ -45,18 +45,15 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <h1>📋 Quiz — Tasy EMR | Administração do Sistema</h1>
     <p class="subtitulo">Ordem das perguntas fixa • Apenas respostas embaralhadas 🔀</p>
-
     <div class="botoes">
         <button class="btn btn-secundario" onclick="carregarQuestoes()">🔀 Embaralhar Respostas</button>
         <button class="btn" onclick="reiniciarRespostas()">🔄 Reiniciar Quiz</button>
     </div>
     
     <div id="area-questoes"></div>
-
     <div class="painel-pontos" id="painelResultado">
         <h2>📊 Resultado Final</h2>
         <div class="pontuacao">Nota: <span id="nota">0</span>/10</div>
@@ -67,7 +64,6 @@
         <div class="lista-erros" id="lista-erros"></div>
     </div>
 </div>
-
 <script>
 const bancoQuestoes = [
     {
@@ -163,8 +159,8 @@ const bancoQuestoes = [
             c: "Atualizar a senha do usuário.",
             d: "Gerenciar os perfis."
         },
-        correta: "a",
-        explicacao: "A aba Aplicação serve para alterar senha, atualizar versão e atualizar senha do usuário. Gerenciar perfis fica em outro menu."
+        correta: "b",
+        explicacao: "Na aba Aplicação da Administração do Sistema é possível atualizar o número da versão do sistema."
     },
     {
         id: 9,
@@ -180,7 +176,7 @@ const bancoQuestoes = [
     },
     {
         id: 10,
-        enunciado: "10. Em qual local do sistema é possível configurar permissões relacionadas a dados sensíveis, como: visualizar informações sensíveis dos pacientes, acessar dados que identificam a pessoa, excluir informações do paciente ou aprovar exclusões de dados.",
+        enunciado: "10. Em qual local do sistema é possível configurar permissões relacionadas a dados sensíveis, como: visualizar informações sensíveis dos pacientes, acessar dados que identificam a pessoa, excluir informações do paciente ou aprovar exclusões de dados?",
         alternativas: {
             a: "Em Administração do Sistema → Usuário",
             b: "Em Administração do Sistema → Perfil",
@@ -191,9 +187,7 @@ const bancoQuestoes = [
         explicacao: "Restrições especiais (dados sensíveis, exclusão, aprovação) são configuradas em Parâmetros Função, vinculadas ao cargo/perfil."
     }
 ];
-
 let acertos = 0, respondidas = 0, historicoErros = [];
-
 function embaralharAlternativas(questao) {
     const itens = Object.entries(questao.alternativas);
     for (let i = itens.length - 1; i > 0; i--) {
@@ -209,7 +203,6 @@ function embaralharAlternativas(questao) {
     });
     return { novasAlternativas, novaCorreta };
 }
-
 function carregarQuestoes() {
     acertos = respondidas = 0; historicoErros = [];
     document.getElementById('painelResultado').style.display = 'none';
@@ -227,12 +220,10 @@ function carregarQuestoes() {
         area.innerHTML += html;
     });
 }
-
 function reiniciarRespostas() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setTimeout(carregarQuestoes, 300);
 }
-
 function responder(idQuestao, correta, escolhida, elemento) {
     const questaoDiv = document.getElementById(`q${idQuestao}`);
     questaoDiv.classList.add('respondida');
@@ -255,7 +246,6 @@ function responder(idQuestao, correta, escolhida, elemento) {
     respondidas++;
     if (respondidas === bancoQuestoes.length) setTimeout(mostrarResultadoFinal, 600);
 }
-
 function mostrarResultadoFinal() {
     const painel = document.getElementById('painelResultado');
     const notaEl = document.getElementById('nota');
@@ -284,7 +274,6 @@ function mostrarResultadoFinal() {
     painel.style.display = 'block';
     painel.scrollIntoView({ behavior: 'smooth' });
 }
-
 window.onload = carregarQuestoes;
 </script>
 </body>
